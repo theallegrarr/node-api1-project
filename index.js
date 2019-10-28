@@ -9,6 +9,7 @@ server.use(express.json());
 server.post('/api/users', addUser);
 server.get('/api/users', getUsers);
 server.get('/api/users/:id', getUserById);
+server.delete('/api/users/:id', deleteById);
 server.get('*', handleDefault);
 
 function handleDefault(req, res){
@@ -23,6 +24,12 @@ function getUsers(req, res){
 
 function getUserById(req, res){
   db.findById(req.params.id)
+    .then(data => res.json(data))
+    .catch(err => console.log(err))
+}
+
+function deleteById(req, res){
+  db.remove(req.params.id)
     .then(data => res.json(data))
     .catch(err => console.log(err))
 }
