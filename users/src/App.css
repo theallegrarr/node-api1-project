@@ -26,4 +26,13 @@
   flex-direction: row;
   justify-content: space-between;
   justify-items: space-between;
+  width: 100%;
+}
+
+button {
+  border: none;
+  background-color: red;
+  margin: 1%;
+  height: 50px;
+  cursor: pointer;
 }
