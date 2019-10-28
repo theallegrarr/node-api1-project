@@ -6,12 +6,25 @@ const db = require('./data/db');
 server.use(cors());
 server.use(express.json());
 
-server.get('*', handleDefault);
 server.post('/api/users', addUser);
-
+server.get('/api/users', getUsers);
+server.get('/api/users/:id', getUserById);
+server.get('*', handleDefault);
 
 function handleDefault(req, res){
   res.json('no path here');
+}
+
+function getUsers(req, res){
+  db.find()
+    .then(data => res.json(data))
+    .catch(err => console.log(err))
+}
+
+function getUserById(req, res){
+  db.findById(req.params.id)
+    .then(data => res.json(data))
+    .catch(err => console.log(err))
 }
 
 function addUser(req, res){
